@@ -1,0 +1,10 @@
+1. Problemas no código original
+Strings mágicas sem type-safety, Thread.sleep hardcoded impedindo testes, e uma classe fazendo coisas demais — log, I/O e roteamento juntos. Adicionar qualquer status novo exigia modificar a própria classe.
+2. Resultado da refatoração
+O PedidoProcessor ficou com 3 linhas de lógica real. Cada status tem sua própria classe, então mudanças são cirúrgicas e sem risco de quebrar outros fluxos.
+3. Padrões aplicados
+Strategy substituiu o when monolítico por polimorfismo. Factory isolou a criação das estratégias, mantendo o Processor limpo.
+4. Manutenção e escalabilidade
+Novo status = nova classe + novo case no enum. O compilador Kotlin avisa se você esquecer de tratar o caso na Factory. Código existente não é tocado.
+5. Boas práticas
+SRP e OCP do SOLID, injeção de dependência no construtor, enum class no lugar de strings mágicas, data class imutável para o modelo, e interface para o Logger./
